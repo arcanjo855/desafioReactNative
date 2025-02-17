@@ -1,32 +1,40 @@
 import React, {useState} from 'react';
 import {Text, TextInput, View, Button, Alert, TouchableHighlight} from 'react-native';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPssword] = useState('');
-  const [tokem, settokem] = useState('');
   
   const Touchables = () => {
     if(!email) {
-      Alert.alert("email nao pode ser vazio");
+      Alert.alert("email nao pode esta vazio");
     }
     if(!password) {
       Alert.alert("senha nao pode ser vazia");
     }
     
-    axios.post("http://localhost:3000/login",{
+    axios.post("http://10.2.3.59:3000/login",{
       email,
       password
-  }).then(res => {
-      console.log(res)     
-  }).catch(err => {
-      alert(`login ou senha incorreta`)
+  }).then(function (response) {
+    var token = JSON.stringify(response.data);
+    AsyncStorage.setItem('token', token);
+    if(token){
+      Alert.alert("logado");
+      router.navigate("/home")
+    }
   })
-    };
+  .catch(function (error) {
+    console.log(error);
+  });
+
+  
+  };
 
 
 

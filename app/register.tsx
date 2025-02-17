@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Text, TextInput, View, Button, Alert, TouchableHighlight} from 'react-native';
 import { Link } from 'expo-router';
+import axios from 'axios';
 
 
 
@@ -13,15 +14,29 @@ const RegisterPage = () => {
   
   
   const Touchables = () => {
-      if(!name) {
-        Alert.alert("nome nao pode ser vazio");
-      }
-      if(!email) {
-        Alert.alert("email nao pode ser vazio");
-      }
-      if(!password) {
-        Alert.alert("senha nao pode ser vazia");
-      }
+
+    if(!name) {
+      Alert.alert("nome nao pode ser vazio");
+      return
+    }
+    if(!email) {
+      Alert.alert("email nao pode ser vazio");
+      return
+    }
+    if(!password) {
+      Alert.alert("senha nao pode ser vazia");
+      return
+    }
+
+      axios.post("http://10.2.3.59:3000/register",{
+        name, email, password, number, area_code
+      }).then(res => {
+        Alert.alert("usuario cadastrado");     
+      }).catch(err => {
+        console.log(err) 
+        Alert.alert("erro ao cadastrar usuario");
+      })
+      
     };
 
 
