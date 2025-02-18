@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Text, TextInput, View, Button, Alert, TouchableHighlight} from 'react-native';
-import { Link } from 'expo-router';
+import {Text, TextInput, View, Button, Alert, ScrollView} from 'react-native';
+import { Link, router } from 'expo-router';
 import axios from 'axios';
 
 
@@ -26,14 +26,25 @@ const RegisterPage = () => {
     if(!password) {
       Alert.alert("senha nao pode ser vazia");
       return
+    }if(!area_code) {
+      Alert.alert("DDD nao pode ser vazio");
+      return
+    }if(!number) {
+      Alert.alert("numero nao pode ser vazio");
+      return
     }
 
       axios.post("http://10.2.3.59:3000/register",{
         name, email, password, number, area_code
       }).then(res => {
         Alert.alert("usuario cadastrado");     
+        router.replace("/")
       }).catch(err => {
         console.log(err) 
+        if(email){
+          Alert.alert("email ja cadastrado");
+          return
+        }
         Alert.alert("erro ao cadastrar usuario");
       })
       
@@ -42,6 +53,7 @@ const RegisterPage = () => {
 
 
   return (
+    <ScrollView>
     <View style={{padding: 50, gap: 10}}>
       <Text style={{fontSize: 50, textAlign: 'center'}}>Registro</Text>
       <Text>nome</Text>
@@ -57,7 +69,8 @@ const RegisterPage = () => {
         placeholder="Digite seu email"
         onChangeText={newText => setEmail(newText)}
         defaultValue={email}
-        
+        autoComplete='email'
+        keyboardType='email-address'
       />
       <Text>Senha</Text>
       <TextInput
@@ -74,6 +87,7 @@ const RegisterPage = () => {
         onChangeText={newText => setArea_code(newText)}
         defaultValue={area_code}
         keyboardType="numeric"
+        maxLength={2}
       />
       <Text>Telefone</Text>
       <TextInput
@@ -82,6 +96,7 @@ const RegisterPage = () => {
         onChangeText={newText => setNumber(newText)}
         defaultValue={number}
         keyboardType="numeric"
+        maxLength={9}
       />
       <Button
         title="Cadastrar"
@@ -93,6 +108,7 @@ const RegisterPage = () => {
       <Link href={"/"} style={{fontSize: 20, marginLeft: 25, textDecorationLine: 'underline', textDecorationColor: "#6366f1"}}>Fazer Login</Link>
      
     </View>
+    </ScrollView>
   );
 };
 

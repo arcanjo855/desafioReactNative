@@ -21,12 +21,12 @@ const LoginPage = () => {
     axios.post("http://10.2.3.59:3000/login",{
       email,
       password
-  }).then(function (response) {
-    var token = JSON.stringify(response.data);
-    AsyncStorage.setItem('token', token);
+  }).then(async function (response) {
+    var token = response.data.token;
+    await AsyncStorage.setItem('token', token);
     if(token){
       Alert.alert("logado");
-      router.navigate("/home")
+      router.replace("/tabs/home")
     }
   })
   .catch(function (error) {
@@ -47,6 +47,8 @@ const LoginPage = () => {
         placeholder="Digite seu email"
         onChangeText={newText => setEmail(newText)}
         defaultValue={email}
+        autoComplete='email'
+        keyboardType='email-address'
       />
       <Text>Senha</Text>
       <TextInput
