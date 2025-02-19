@@ -40,7 +40,7 @@ const HomePage = () => {
       <View style={{ padding: 50, marginTop: 100, gap: 10 }}>
         <Text style={{ fontSize: 50, textAlign: "center" }}>Ver dados</Text>
         <Button title="buscar" color="#6366f1" onPress={Touchables} />
-        {data !== null ? (
+        {data !== undefined ? (
           <>
             <Text>Email: {data?.email}</Text>
             <Text>ID: {data?.id}</Text>
