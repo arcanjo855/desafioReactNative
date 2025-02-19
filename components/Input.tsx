@@ -7,6 +7,7 @@ interface InputProps {
   isPassword?: boolean;
   value: string;
   onChangeText?: ((text: string) => void) | undefined;
+  maxLength?: number;
 }
 
 export const Input = ({
@@ -16,10 +17,10 @@ export const Input = ({
   isPassword,
   value,
   onChangeText,
+  maxLength,
 }: InputProps) => {
   const autoComplete = isPassword ? `password` : undefined;
   const secureTextEntry = !!isPassword;
-  //   console.log(label, type, isPassword, secureTextEntry);
   return (
     <View>
       <Text>{label}</Text>
@@ -31,11 +32,7 @@ export const Input = ({
         secureTextEntry={secureTextEntry}
         value={value}
         onChangeText={onChangeText}
-        //   placeholder="Digite seu email"
-        //   onChangeText={(newText) => setEmail(newText)}
-        //   defaultValue={email}
-        //   autoComplete="email"
-        //   keyboardType="email-address"
+        maxLength={maxLength}
       />
     </View>
   );

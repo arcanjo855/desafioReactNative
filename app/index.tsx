@@ -38,7 +38,7 @@ const LoginPage = () => {
   };
 
   return (
-    <View className="globalPage">
+    <View className="my-auto mx-8 p-6 rounded-3xl gap-6">
       <Text className="text-5xl text-center">Login</Text>
       <Input
         label="E-mail"
@@ -56,16 +56,8 @@ const LoginPage = () => {
       />
       <Button title="login" color="#6366f1" onPress={Touchables} />
 
-      <Text className="changePageText">Ainda nao tem uma conta?</Text>
-      <Link
-        href={"/register"}
-        style={{
-          fontSize: 20,
-          marginLeft: 25,
-          textDecorationLine: "underline",
-          textDecorationColor: "#6366f1",
-        }}
-      >
+      <Text className="text-center text-2xl">Ainda nao tem uma conta?</Text>
+      <Link href={"/register"} className="mx-6 underline text-2xl">
         Registrar-se
       </Link>
     </View>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, TextInput, View, Button, Alert, ScrollView } from "react-native";
 import { Link, router } from "expo-router";
 import axios from "axios";
+import { Input } from "@/components/Input";
 
 import "../global.css";
 
@@ -58,39 +59,34 @@ const RegisterPage = () => {
 
   return (
     <ScrollView>
-      <View className="">
+      <View className="my-4 mx-8 border p-6 rounded-3xl gap-6">
         <Text style={{ fontSize: 50, textAlign: "center" }}>Registro</Text>
-        <Text>nome</Text>
-        <TextInput
-          style={{ height: 40, padding: 5, borderWidth: 0.2 }}
+        <Input
+          label="Nome"
           placeholder="Digite seu nome"
+          keyboardType="default"
+          value={name}
           onChangeText={(newText) => setName(newText)}
-          defaultValue={name}
         />
-        <Text>Email</Text>
-        <TextInput
-          style={{ height: 40, padding: 5, borderWidth: 0.2 }}
+        <Input
+          label="Email"
           placeholder="Digite seu email"
-          onChangeText={(newText) => setEmail(newText)}
-          defaultValue={email}
-          autoComplete="email"
           keyboardType="email-address"
+          value={email}
+          onChangeText={(newText) => setEmail(newText)}
         />
-        <Text>Senha</Text>
-        <TextInput
-          style={{ height: 40, padding: 5, borderWidth: 0.2 }}
+        <Input
+          label="Senha"
           placeholder="Digite sua senha"
+          isPassword
+          value={password}
           onChangeText={(newText) => setPssword(newText)}
-          defaultValue={password}
-          secureTextEntry={true}
         />
-        <Text>DDD</Text>
-        <TextInput
-          style={{ height: 40, padding: 5, borderWidth: 0.2 }}
+        <Input
+          label="DDD"
           placeholder="Digite seu DDD"
+          value={area_code}
           onChangeText={(newText) => setArea_code(newText)}
-          defaultValue={area_code}
-          keyboardType="numeric"
           maxLength={2}
         />
         <Text>Telefone</Text>
