@@ -10,7 +10,7 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "lint-fix": "eslint --fix ."
+    "lint-fix": "expo lint --fix"
   },
   "jest": {
     "preset": "jest-expo"

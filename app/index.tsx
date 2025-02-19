@@ -1,6 +1,13 @@
 "use dom";
 import React, { useState } from "react";
-import { Text, TextInput, View, Button, Alert } from "react-native";
+import {
+  Text,
+  TextInput,
+  View,
+  Button,
+  Alert,
+  TouchableHighlight,
+} from "react-native";
 import { Link, router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
