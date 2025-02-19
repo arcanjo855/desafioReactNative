@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Text, View, Button, ScrollView } from "react-native";
 import axios from "axios";
 
+interface User {
+  name: string;
+  id: number;
+}
+
 const UsuariosPage = () => {
-  const [datas, setData] = useState([]);
+  const [datas, setData] = useState<User[]>();
 
   const TouchablesOut = async () => {
     await axios
