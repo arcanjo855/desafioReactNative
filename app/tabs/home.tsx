@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { Text, TextInput, View, Button, Alert, ScrollView } from "react-native";
-import { Link, router } from "expo-router";
+import { Text, View, Button, Alert, ScrollView } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+interface User {
+  id: number;
+  email: string;
+  area_code: number;
+  number: number;
+  created_at: string;
+  modified_at: string;
+}
+
 const HomePage = () => {
-  const [email, setEmail] = useState("");
-  const [id, setId] = useState("");
-  const [area_code, setArea_code] = useState("");
-  const [number, setNumber] = useState("");
-  const [created_at, setCreated_at] = useState("");
-  const [modified_at, setModified_at] = useState("");
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<User>();
 
   const Touchables = async () => {
     try {
@@ -25,12 +27,7 @@ const HomePage = () => {
         "http://10.2.3.59:3000/userInfo",
         axiosConfig,
       );
-      setEmail(`Email:  ` + response.data.email);
-      setId(`Id:  ` + response.data.id);
-      setNumber(response.data.number);
-      setArea_code(`Telefone:  ` + response.data.area_code);
-      setCreated_at(`Criado em:  ` + response.data.created_at);
-      setModified_at(`Modificado em:  ` + response.data.modified_at);
+      setData(response.data);
     } catch (error) {
       Alert.alert("Voce precisa estar logado para ver os dados");
       console.error(error);
@@ -41,15 +38,15 @@ const HomePage = () => {
     <ScrollView>
       <View style={{ padding: 50, marginTop: 100, gap: 10 }}>
         <Text style={{ fontSize: 50, textAlign: "center" }}>Ver dados</Text>
-        {data !== null ? (
+        {data !== undefined ? (
           <>
-            <Text>{email}</Text>
-            <Text>{id}</Text>
+            <Text>{data.area_code}</Text>
+            <Text>{data.id}</Text>
             <Text>
-              {area_code} {number}
+              {data.area_code} {data?.number}
             </Text>
-            <Text>{created_at}</Text>
-            <Text>{modified_at}</Text>
+            <Text>{data.created_at}</Text>
+            <Text>{data.modified_at}</Text>
           </>
         ) : (
           <Button title="buscar" color="#6366f1" onPress={Touchables} />
