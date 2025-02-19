@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Text, TextInput, View, Button, Alert } from "react-native";
+import { Text, View, Button, Alert } from "react-native";
 import { Link, router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import "../global.css";
+import { Input } from "@/components/Input";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -35,30 +38,25 @@ const LoginPage = () => {
   };
 
   return (
-    <View style={{ padding: 50, marginTop: 100, gap: 10 }}>
-      <Text style={{ fontSize: 50, textAlign: "center" }}>Login</Text>
-      <Text>Email</Text>
-      <TextInput
-        style={{ height: 40, padding: 5, borderWidth: 0.2 }}
+    <View className="globalPage">
+      <Text className="text-5xl text-center">Login</Text>
+      <Input
+        label="E-mail"
         placeholder="Digite seu email"
-        onChangeText={(newText) => setEmail(newText)}
-        defaultValue={email}
-        autoComplete="email"
         keyboardType="email-address"
+        value={email}
+        onChangeText={(newText) => setEmail(newText)}
       />
-      <Text>Senha</Text>
-      <TextInput
-        style={{ height: 40, padding: 5, borderWidth: 0.2 }}
+      <Input
+        label="Senha"
         placeholder="Digite sua senha"
+        isPassword
+        value={password}
         onChangeText={(newText) => setPssword(newText)}
-        defaultValue={password}
-        secureTextEntry={true}
       />
       <Button title="login" color="#6366f1" onPress={Touchables} />
 
-      <Text style={{ fontSize: 20, textAlign: "center" }}>
-        Ainda nao tem uma conta?
-      </Text>
+      <Text className="changePageText">Ainda nao tem uma conta?</Text>
       <Link
         href={"/register"}
         style={{

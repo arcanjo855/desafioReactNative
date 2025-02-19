@@ -3,6 +3,8 @@ import { Text, TextInput, View, Button, Alert, ScrollView } from "react-native";
 import { Link, router } from "expo-router";
 import axios from "axios";
 
+import "../global.css";
+
 const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -56,7 +58,7 @@ const RegisterPage = () => {
 
   return (
     <ScrollView>
-      <View style={{ padding: 50, gap: 10 }}>
+      <View className="">
         <Text style={{ fontSize: 50, textAlign: "center" }}>Registro</Text>
         <Text>nome</Text>
         <TextInput
