@@ -45,7 +45,7 @@ const LoginPage = () => {
           className="w-full h-full"
         />
       </View>
-      <View className="mt-6">
+      <View className="mt-6 flex mx-12 gap-5">
         <Text className="text-5xl text-center">Login</Text>
         <Input
           label="E-mail"
@@ -65,12 +65,14 @@ const LoginPage = () => {
           <Text className="border rounded-lg min-h-12 text-center py-2 bg-sky-300">
             Login
           </Text>
+          <View></View>
         </TouchableOpacity>
-
-        <Text className="text-center text-2xl">Ainda nao tem uma conta?</Text>
-        <Link href={"/register"} className="mx-6 underline text-2xl">
-          Registrar-se
-        </Link>
+        <View className="gap-2 flex justify-start p-3">
+          <Text className="text-center text-2xl">Ainda nao tem uma conta?</Text>
+          <Link href={"/register"} className="mx-6 underline text-2xl">
+            Registrar-se
+          </Link>
+        </View>
         <View />
       </View>
     </View>
