@@ -8,6 +8,7 @@ interface InputProps {
   value: string;
   onChangeText?: ((text: string) => void) | undefined;
   maxLength?: number;
+  autoCapitalize?: "none" | "sentences" | "words" | "characters" | undefined;
 }
 
 export const Input = ({
@@ -18,6 +19,7 @@ export const Input = ({
   value,
   onChangeText,
   maxLength,
+  autoCapitalize,
 }: InputProps) => {
   const autoComplete = isPassword ? `password` : undefined;
   const secureTextEntry = !!isPassword;
@@ -34,6 +36,7 @@ export const Input = ({
         value={value}
         onChangeText={onChangeText}
         maxLength={maxLength}
+        autoCapitalize={autoCapitalize}
       />
     </View>
   );

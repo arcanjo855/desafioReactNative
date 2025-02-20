@@ -75,6 +75,7 @@ const RegisterPage = () => {
             keyboardType="default"
             value={name}
             onChangeText={(newText) => setName(newText)}
+            autoCapitalize="none"
           />
           <Input
             label="Email"
@@ -82,6 +83,7 @@ const RegisterPage = () => {
             keyboardType="email-address"
             value={email}
             onChangeText={(newText) => setEmail(newText)}
+            autoCapitalize="none"
           />
           <Input
             label="Senha"
@@ -89,6 +91,7 @@ const RegisterPage = () => {
             isPassword
             value={password}
             onChangeText={(newText) => setPssword(newText)}
+            autoCapitalize="none"
           />
           <Input
             label="DDD"

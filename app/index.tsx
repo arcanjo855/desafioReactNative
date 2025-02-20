@@ -37,7 +37,6 @@ const LoginPage = () => {
         var token = response.data.token;
         await AsyncStorage.setItem("token", token);
         if (token) {
-          Alert.alert("logado");
           router.replace("/tabs/home");
         }
       })
@@ -63,6 +62,7 @@ const LoginPage = () => {
             keyboardType="email-address"
             value={email}
             onChangeText={(newText) => setEmail(newText)}
+            autoCapitalize="none"
           />
           <Input
             label="Senha"
@@ -70,6 +70,7 @@ const LoginPage = () => {
             isPassword
             value={password}
             onChangeText={(newText) => setPssword(newText)}
+            autoCapitalize="none"
           />
           <TouchableOpacity onPress={Touchables}>
             <Text className="border rounded-lg min-h-12 text-center py-2 bg-sky-400 text-lg text-white">

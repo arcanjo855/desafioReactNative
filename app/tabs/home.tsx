@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Text, View, Button, Alert, ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, View, TouchableOpacity, Alert, ScrollView } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -35,11 +35,14 @@ const HomePage = () => {
     }
   };
 
+  useEffect(() => {
+    Touchables();
+  }, []);
+
   return (
     <ScrollView>
-      <View style={{ padding: 50, marginTop: 100, gap: 10 }}>
-        <Text style={{ fontSize: 50, textAlign: "center" }}>Ver dados</Text>
-        <Button title="buscar" color="#6366f1" onPress={Touchables} />
+      <View className="gap-5 flex m-auto py-40">
+        <Text style={{ fontSize: 50, textAlign: "center" }}>Seus dados</Text>
         {data !== undefined ? (
           <>
             <Text>Email: {data?.email}</Text>
