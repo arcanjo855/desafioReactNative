@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity, Alert, Image } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+  Image,
+  ScrollView,
+} from "react-native";
 import { Link, router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,9 +21,11 @@ const LoginPage = () => {
   const Touchables = () => {
     if (!email) {
       Alert.alert("email nao pode esta vazio");
+      return;
     }
     if (!password) {
       Alert.alert("senha nao pode ser vazia");
+      return;
     }
 
     axios
@@ -38,44 +47,48 @@ const LoginPage = () => {
   };
 
   return (
-    <View className="max-h-screen max-w-screen">
-      <View className="h-80">
-        <Image
-          source={require("../src/img/red.png")}
-          className="w-full h-full"
-        />
-      </View>
-      <View className="mt-6 flex mx-12 gap-5">
-        <Text className="text-5xl text-center">Login</Text>
-        <Input
-          label="E-mail"
-          placeholder="Digite seu email"
-          keyboardType="email-address"
-          value={email}
-          onChangeText={(newText) => setEmail(newText)}
-        />
-        <Input
-          label="Senha"
-          placeholder="Digite sua senha"
-          isPassword
-          value={password}
-          onChangeText={(newText) => setPssword(newText)}
-        />
-        <TouchableOpacity onPress={Touchables}>
-          <Text className="border rounded-lg min-h-12 text-center py-2 bg-sky-300">
-            Login
-          </Text>
-          <View></View>
-        </TouchableOpacity>
-        <View className="gap-2 flex justify-start p-3">
-          <Text className="text-center text-2xl">Ainda nao tem uma conta?</Text>
-          <Link href={"/register"} className="mx-6 underline text-2xl">
-            Registrar-se
-          </Link>
+    <ScrollView>
+      <View className="max-h-screen max-w-screen">
+        <View className="h-80">
+          <Image
+            source={require("../src/img/blue.jpg")}
+            className="w-full h-full"
+          />
         </View>
-        <View />
+        <View className="mt-6 flex mx-12 gap-5">
+          <Text className="text-5xl text-center">Login</Text>
+          <Input
+            label="E-mail"
+            placeholder="Digite seu email"
+            keyboardType="email-address"
+            value={email}
+            onChangeText={(newText) => setEmail(newText)}
+          />
+          <Input
+            label="Senha"
+            placeholder="Digite sua senha"
+            isPassword
+            value={password}
+            onChangeText={(newText) => setPssword(newText)}
+          />
+          <TouchableOpacity onPress={Touchables}>
+            <Text className="border rounded-lg min-h-12 text-center py-2 bg-sky-400 text-lg text-white">
+              Login
+            </Text>
+            <View></View>
+          </TouchableOpacity>
+          <View className="mx-3">
+            <Text className="text-center text-2xl">
+              Ainda nao tem uma conta?
+            </Text>
+            <Link href={"/register"} className="mx-6 underline text-2xl">
+              Registrar-se
+            </Link>
+          </View>
+          <View />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

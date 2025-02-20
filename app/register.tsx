@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Text, TextInput, View, Button, Alert, ScrollView } from "react-native";
+import {
+  Text,
+  Image,
+  View,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+} from "react-native";
 import { Link, router } from "expo-router";
 import axios from "axios";
 import { Input } from "@/components/Input";
@@ -34,7 +41,6 @@ const RegisterPage = () => {
       Alert.alert("numero nao pode ser vazio");
       return;
     }
-
     axios
       .post("http://10.2.3.59:3000/register", {
         name,
@@ -50,7 +56,7 @@ const RegisterPage = () => {
       .catch((err) => {
         console.log(err);
         if (email) {
-          Alert.alert("email ja cadastrado");
+          Alert.alert("email invalido");
           return;
         }
         Alert.alert("erro ao cadastrar usuario");
@@ -59,59 +65,69 @@ const RegisterPage = () => {
 
   return (
     <ScrollView>
-      <View className="my-4 mx-8 border p-6 rounded-3xl gap-6">
-        <Text style={{ fontSize: 50, textAlign: "center" }}>Registro</Text>
-        <Input
-          label="Nome"
-          placeholder="Digite seu nome"
-          keyboardType="default"
-          value={name}
-          onChangeText={(newText) => setName(newText)}
-        />
-        <Input
-          label="Email"
-          placeholder="Digite seu email"
-          keyboardType="email-address"
-          value={email}
-          onChangeText={(newText) => setEmail(newText)}
-        />
-        <Input
-          label="Senha"
-          placeholder="Digite sua senha"
-          isPassword
-          value={password}
-          onChangeText={(newText) => setPssword(newText)}
-        />
-        <Input
-          label="DDD"
-          placeholder="Digite seu DDD"
-          value={area_code}
-          onChangeText={(newText) => setArea_code(newText)}
-          maxLength={2}
-        />
-        <Text>Telefone</Text>
-        <TextInput
-          style={{ height: 40, padding: 5, borderWidth: 0.2 }}
-          placeholder="Digite seu telefone"
-          onChangeText={(newText) => setNumber(newText)}
-          defaultValue={number}
-          keyboardType="numeric"
-          maxLength={9}
-        />
-        <Button title="Cadastrar" color="#6366f1" onPress={Touchables} />
-
-        <Text style={{ fontSize: 20, marginLeft: 25 }}>Ja tem cadastrado?</Text>
-        <Link
-          href={"/"}
-          style={{
-            fontSize: 20,
-            marginLeft: 25,
-            textDecorationLine: "underline",
-            textDecorationColor: "#6366f1",
-          }}
-        >
-          Fazer Login
-        </Link>
+      <View>
+        <Image source={require("../src/img/blue.jpg")} className="h-32" />
+        <View className="mx-8 p-6 gap-4">
+          <Text style={{ fontSize: 50, textAlign: "center" }}>Registro</Text>
+          <Input
+            label="Nome"
+            placeholder="Digite seu nome"
+            keyboardType="default"
+            value={name}
+            onChangeText={(newText) => setName(newText)}
+          />
+          <Input
+            label="Email"
+            placeholder="Digite seu email"
+            keyboardType="email-address"
+            value={email}
+            onChangeText={(newText) => setEmail(newText)}
+          />
+          <Input
+            label="Senha"
+            placeholder="Digite sua senha"
+            isPassword
+            value={password}
+            onChangeText={(newText) => setPssword(newText)}
+          />
+          <Input
+            label="DDD"
+            placeholder="Digite seu DDD"
+            value={area_code}
+            onChangeText={(newText) => setArea_code(newText)}
+            keyboardType="number-pad"
+            maxLength={2}
+          />
+          <Input
+            label="Telefone"
+            placeholder="Digite seu telefone"
+            value={number}
+            onChangeText={(newText) => setNumber(newText)}
+            keyboardType="number-pad"
+            maxLength={9}
+          />
+          <TouchableOpacity onPress={Touchables}>
+            <Text className="border rounded-lg min-h-12 text-center py-2 bg-sky-400 text-lg text-white">
+              Cadastrar
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View className="mx-16">
+          <Text style={{ fontSize: 20, marginLeft: 25 }}>
+            Ja tem cadastrado?
+          </Text>
+          <Link
+            href={"/"}
+            style={{
+              fontSize: 20,
+              marginLeft: 25,
+              textDecorationLine: "underline",
+              textDecorationColor: "#6366f1",
+            }}
+          >
+            Fazer Login
+          </Link>
+        </View>
       </View>
     </ScrollView>
   );
