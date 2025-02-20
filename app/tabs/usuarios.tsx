@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, Button, ScrollView } from "react-native";
+import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import axios from "axios";
 
 interface User {
@@ -23,35 +23,65 @@ const UsuariosPage = () => {
 
   return (
     <ScrollView>
-      <View style={{ padding: 50, marginTop: 100, gap: 10 }}>
+      <View className="p-50 mt-32 gap-10">
         <Text style={{ fontSize: 30, textAlign: "center" }}>
           Lista de usuarios
         </Text>
 
-        <Button title="buscar" color="#6366f1" onPress={TouchablesOut} />
+        <TouchableOpacity onPress={TouchablesOut}>
+          <Text className="border rounded-lg min-h-12 text-center py-2 bg-sky-400 text-lg text-white">
+            Monstar usuarios
+          </Text>
+        </TouchableOpacity>
 
-        <View>
-          {datas &&
-            datas.map((data) => {
-              return (
-                <View
-                  key={data.id}
-                  style={{
-                    padding: 10,
-                    borderWidth: 1,
-                    borderColor: "black",
-                    margin: 10,
-                  }}
-                >
-                  <Text>ID: {data.id}</Text>
-                  <Text>Nome: {data.name}</Text>
-                </View>
-              );
-            })}
-        </View>
+        {datas !== undefined ? (
+          <>
+            {datas &&
+              datas.map((data) => {
+                return (
+                  <View
+                    key={data.id}
+                    style={{
+                      padding: 10,
+                      borderWidth: 1,
+                      borderColor: "black",
+                      margin: 10,
+                    }}
+                  >
+                    <Text>ID: {data.id}</Text>
+                    <Text>Nome: {data.name}</Text>
+                  </View>
+                );
+              })}
+          </>
+        ) : (
+          <></>
+        )}
+
+        <View></View>
       </View>
     </ScrollView>
   );
 };
 
 export default UsuariosPage;
+
+// {
+//   datas &&
+//     datas.map((data) => {
+//       return (
+//         <View
+//           key={data.id}
+//           style={{
+//             padding: 10,
+//             borderWidth: 1,
+//             borderColor: "black",
+//             margin: 10,
+//           }}
+//         >
+//           <Text>ID: {data.id}</Text>
+//           <Text>Nome: {data.name}</Text>
+//         </View>
+//       );
+//     });
+// }
