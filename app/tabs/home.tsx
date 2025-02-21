@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, Alert, ScrollView, ActivityIndicator } from "react-native";
-import { router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ButtonOpacity } from "@/components/ButtonOpacity";
 import { Avatar } from "@rneui/themed";
 
 interface User {
@@ -38,11 +36,6 @@ const HomePage = () => {
     }
   };
 
-  const HomePage = () => {
-    AsyncStorage.removeItem("token");
-    router.replace("/");
-  };
-
   useEffect(() => {
     Touchables();
   }, []);
@@ -52,24 +45,42 @@ const HomePage = () => {
       <View>
         {data !== undefined ? (
           <View className="w-min-full h-min-full">
-            <View className="flex justify-center items-center bg-sky-400 h-48 ">
+            <View className="flex justify-center items-center bg-sky-900 h-48 ">
               <View>
                 <View className="flex items-center">
                   <Avatar
                     size={67}
                     rounded
-                    title="P"
+                    title=""
                     containerStyle={{ backgroundColor: "#d3d3d3" }}
                   ></Avatar>
                   <Text className="text-white">{data.name}</Text>
-                  <Text className="text-white">{data.email}</Text>
+                </View>
+              </View>
+            </View>
+
+            <View className="bg-gray-400 my-9 mx-8 rounded-3xl">
+              <View className="flex my-8 gap-5 mx-5">
+                <Text className="text-white">Seus dados: </Text>
+                <View>
+                  <Text className="text-white">Email: {data.email}</Text>
+                  <Text className="text-white">
+                    Telefone: ({data.area_code}) {data.number}
+                  </Text>
+                  <Text className="text-white">
+                    Conta crianda em: {data.created_at}
+                  </Text>
                 </View>
               </View>
             </View>
           </View>
         ) : (
           <>
-            <ActivityIndicator size="large" color="#38bdf8" />
+            <ActivityIndicator
+              className="flex items-center justify-center my-96"
+              size="large"
+              color="#38bdf8"
+            />
           </>
         )}
       </View>

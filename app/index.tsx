@@ -40,9 +40,9 @@ const LoginPage = () => {
   };
 
   return (
-    <ScrollView className="flex-1 bg-sky-400">
+    <ScrollView className="flex-1 bg-sky-900">
       <View className="flex justify-center items-center h-96">
-        <Image className="w-48 h-48" source={require("../src/img/red.png")} />
+        <Image className="w-48 h-48" source={require("../src/img/moon.png")} />
       </View>
       <View className="min-h-full bg-white rounded-[15vw]">
         <View className="mt-16 flex mx-12 gap-5">
