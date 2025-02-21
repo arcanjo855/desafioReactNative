@@ -44,9 +44,8 @@ const LoginPage = () => {
       <View className="flex justify-center items-center h-96">
         <Image className="w-48 h-48" source={require("../src/img/red.png")} />
       </View>
-      <View className="min-h-full bg-white rounded-[18vw]">
-        <View className="mt-6 flex mx-12 gap-5">
-          <Text className="text-5xl text-center">Login</Text>
+      <View className="min-h-full bg-white rounded-[15vw]">
+        <View className="mt-16 flex mx-12 gap-5">
           <Input
             label="E-mail"
             placeholder="Digite seu email"
@@ -63,7 +62,7 @@ const LoginPage = () => {
             onChangeText={(newText) => setPssword(newText)}
             autoCapitalize="none"
           />
-          <View>
+          <View className="py-3">
             <ButtonOpacity onPress={Touchables} title="Login" />
           </View>
           <View className="mx-auto">

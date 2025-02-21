@@ -59,7 +59,7 @@ const RegisterPage = () => {
 
   return (
     <ScrollView className="flex-1 bg-sky-400">
-      <View className="flex justify-center items-center h-32">
+      <View className="flex justify-center items-center h-16">
         <Image source={require("../src/img/blue.jpg")} className="h-12 w-12" />
       </View>
 

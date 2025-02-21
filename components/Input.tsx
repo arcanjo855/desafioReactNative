@@ -25,13 +25,17 @@ export const Input = ({
   const secureTextEntry = !!isPassword;
   return (
     <View>
-      <Text>{label}</Text>
+      <Text style={{ paddingBottom: 8 }}>{label}</Text>
       <TextInput
         placeholder={placeholder}
         autoComplete={autoComplete}
         keyboardType={keyboardType}
-        style={{ paddingLeft: 18 }}
-        className="border rounded-lg min-h-12"
+        style={{
+          paddingLeft: 18,
+          backgroundColor: "#f3f4f6",
+          borderRadius: 10,
+        }}
+        className="min-h-12"
         secureTextEntry={secureTextEntry}
         value={value}
         onChangeText={onChangeText}
