@@ -9,7 +9,7 @@ interface ButtonProps {
 export const ButtonOpacity: React.FC<ButtonProps> = ({ onPress, title }) => {
   return (
     <TouchableOpacity
-      className="rounded-lg min-h-12 py-2 text-lg"
+      className="rounded-lg py-2 text-lg"
       onPress={onPress}
       activeOpacity={0.7}
       style={{
@@ -17,6 +17,8 @@ export const ButtonOpacity: React.FC<ButtonProps> = ({ onPress, title }) => {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#3730a3",
+        minHeight: 38,
+        borderRadius: 15,
       }}
     >
       <Text className="text-white">{title}</Text>
