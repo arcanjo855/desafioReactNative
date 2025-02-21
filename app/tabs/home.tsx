@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  Alert,
-  ScrollView,
-  ActivityIndicator,
-  TouchableOpacity,
-} from "react-native";
+import { Text, View, Alert, ScrollView, ActivityIndicator } from "react-native";
 import { router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ButtonOpacity } from "@/components/ButtonOpacity";
+import { Avatar } from "@rneui/themed";
 
 interface User {
   name: string;
@@ -33,7 +28,7 @@ const HomePage = () => {
       };
 
       const response = await axios.get(
-        "http://10.2.3.59:3000/userInfo",
+        "http://192.168.18.6:3000/userInfo",
         axiosConfig,
       );
       setData(response.data);
@@ -54,36 +49,29 @@ const HomePage = () => {
 
   return (
     <ScrollView>
-      <View className="gap-5 flex m-auto py-40">
+      <View>
         {data !== undefined ? (
-          <>
-            <View className="flex justify-center items-center">
-              <Text className="text-6xl text-center py-auto bg-sky-400 w-52 h-52 rounded-full">
-                {data.name}
-              </Text>
+          <View className="w-min-full h-min-full">
+            <View className="flex justify-center items-center bg-sky-400 h-48 ">
               <View>
-                <Text>Email: {data.email}</Text>
-                <Text>ID: {data.id}</Text>
-                <Text>
-                  Telefone: ({data.area_code}) {data.number}
-                </Text>
-                <Text>Criado em: {data.created_at}</Text>
-                <Text>Modificado em: {data.modified_at}</Text>
+                <View className="flex items-center">
+                  <Avatar
+                    size={67}
+                    rounded
+                    title="P"
+                    containerStyle={{ backgroundColor: "#d3d3d3" }}
+                  ></Avatar>
+                  <Text className="text-white">{data.name}</Text>
+                  <Text className="text-white">{data.email}</Text>
+                </View>
               </View>
             </View>
-          </>
+          </View>
         ) : (
           <>
             <ActivityIndicator size="large" color="#38bdf8" />
           </>
         )}
-      </View>
-      <View>
-        <TouchableOpacity onPress={HomePage}>
-          <Text className="border rounded-lg min-h-12 min-w-max text-center py-2 bg-sky-400 text-lg text-white">
-            Sair
-          </Text>
-        </TouchableOpacity>
       </View>
     </ScrollView>
   );

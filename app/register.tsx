@@ -1,15 +1,9 @@
 import React, { useState } from "react";
-import {
-  Text,
-  Image,
-  View,
-  TouchableOpacity,
-  Alert,
-  ScrollView,
-} from "react-native";
+import { Text, Image, View, Alert, ScrollView } from "react-native";
 import { Link, router } from "expo-router";
 import axios from "axios";
 import { Input } from "@/components/Input";
+import { ButtonOpacity } from "@/components/ButtonOpacity";
 
 import "../global.css";
 
@@ -42,7 +36,7 @@ const RegisterPage = () => {
       return;
     }
     axios
-      .post("http://10.2.3.59:3000/register", {
+      .post("http://192.168.18.6:3000/register", {
         name,
         email,
         password,
@@ -64,10 +58,13 @@ const RegisterPage = () => {
   };
 
   return (
-    <ScrollView>
-      <View>
-        <Image source={require("../src/img/blue.jpg")} className="h-32" />
-        <View className="mx-8 p-6 gap-4">
+    <ScrollView className="flex-1 bg-sky-400">
+      <View className="flex justify-center items-center h-32">
+        <Image source={require("../src/img/blue.jpg")} className="h-12 w-12" />
+      </View>
+
+      <View className="bg-white min-h-full rounded-[18vw] mt-6 flex p-12">
+        <View className="gap-5">
           <Text style={{ fontSize: 50, textAlign: "center" }}>Registro</Text>
           <Input
             label="Nome"
@@ -109,27 +106,15 @@ const RegisterPage = () => {
             keyboardType="number-pad"
             maxLength={9}
           />
-          <TouchableOpacity onPress={Touchables}>
-            <Text className="border rounded-lg min-h-12 text-center py-2 bg-sky-400 text-lg text-white">
-              Cadastrar
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View className="mx-16">
-          <Text style={{ fontSize: 20, marginLeft: 25 }}>
-            Ja tem cadastrado?
-          </Text>
-          <Link
-            href={"/"}
-            style={{
-              fontSize: 20,
-              marginLeft: 25,
-              textDecorationLine: "underline",
-              textDecorationColor: "#6366f1",
-            }}
-          >
-            Fazer Login
-          </Link>
+          <View>
+            <ButtonOpacity onPress={Touchables} title="Cadastrar" />
+          </View>
+          <View className="mx-auto">
+            <Text className="text-2xl">Ja tem cadastrado?</Text>
+            <Link href={"/"} className="underline text-2xl">
+              Fazer Login
+            </Link>
+          </View>
         </View>
       </View>
     </ScrollView>

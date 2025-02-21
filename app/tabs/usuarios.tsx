@@ -12,7 +12,7 @@ const UsuariosPage = () => {
 
   const TouchablesOut = async () => {
     await axios
-      .get("http://10.2.3.59:3000/usuarios")
+      .get("http://192.168.18.6:3000/usuarios")
       .then(async function (response) {
         setData(response.data.users);
       })

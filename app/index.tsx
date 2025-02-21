@@ -1,18 +1,12 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Alert,
-  Image,
-  ScrollView,
-} from "react-native";
+import { Text, View, Alert, Image, ScrollView } from "react-native";
 import { Link, router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import "../global.css";
 import { Input } from "@/components/Input";
+import { ButtonOpacity } from "@/components/ButtonOpacity";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +23,7 @@ const LoginPage = () => {
     }
 
     axios
-      .post("http://10.2.3.59:3000/login", {
+      .post("http://192.168.18.6:3000/login", {
         email,
         password,
       })
@@ -46,14 +40,11 @@ const LoginPage = () => {
   };
 
   return (
-    <ScrollView>
-      <View className="max-h-screen max-w-screen">
-        <View className="h-80">
-          <Image
-            source={require("../src/img/blue.jpg")}
-            className="w-full h-full"
-          />
-        </View>
+    <ScrollView className="flex-1 bg-sky-400">
+      <View className="flex justify-center items-center h-96">
+        <Image className="w-48 h-48" source={require("../src/img/red.png")} />
+      </View>
+      <View className="min-h-full bg-white rounded-[18vw]">
         <View className="mt-6 flex mx-12 gap-5">
           <Text className="text-5xl text-center">Login</Text>
           <Input
@@ -72,17 +63,12 @@ const LoginPage = () => {
             onChangeText={(newText) => setPssword(newText)}
             autoCapitalize="none"
           />
-          <TouchableOpacity onPress={Touchables}>
-            <Text className="border rounded-lg min-h-12 text-center py-2 bg-sky-400 text-lg text-white">
-              Login
-            </Text>
-            <View></View>
-          </TouchableOpacity>
-          <View className="mx-3">
-            <Text className="text-center text-2xl">
-              Ainda nao tem uma conta?
-            </Text>
-            <Link href={"/register"} className="mx-6 underline text-2xl">
+          <View>
+            <ButtonOpacity onPress={Touchables} title="Login" />
+          </View>
+          <View className="mx-auto">
+            <Text className="text-2xl">Ainda nao tem uma conta?</Text>
+            <Link href={"/register"} className="underline text-2xl">
               Registrar-se
             </Link>
           </View>
